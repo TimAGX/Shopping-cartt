@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shoppingCart
+  name: shoppingcart
   labels:
-    app: shoppingCart
+    app: shoppingcart
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: shoppingCart
+      app: shoppingcart
   template:
     metadata:
       labels:
-        app: shoppingCart
+        app: shoppingcart
     spec:
       containers:
-        - name: shoppingCart
+        - name: shoppingcart
           image: timagx/nodeapp:v1
           ports:
             - containerPort: 8080
