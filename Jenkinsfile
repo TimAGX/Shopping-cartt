@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from Git repository
-                git 'https://github.com/TimAGX/Shopping-cartt.git'
+                 git branch: 'main', credentialsId: 'dockerhub-credentials', url: 'https://github.com/TimAGX/Shopping-cartt.git'
             }
         }
 
