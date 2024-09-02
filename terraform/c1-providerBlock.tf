@@ -17,7 +17,7 @@ terraform {
   backend "azurerm" {
     resource_group_name   = "TFBackend-CS"
     storage_account_name  = "capstone2580"
-    container_name        = "tfstatefiles"
+    container_name        = "tfstatesfiles"
     key                   = "terraform.tfstate"
   }
 }
