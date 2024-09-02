@@ -2,7 +2,7 @@
 
 resource "azurerm_linux_virtual_machine" "myvm" {
   count                 = var.vm_count
-  name                  = "myVM-${count.index + 1}"
+  name                  = "myVM-${count.index + 1}-${random_string.myrandom.id}"
   resource_group_name   = azurerm_resource_group.rg.name
   location              = azurerm_resource_group.rg.location
   size                  = "Standard_B2s"
@@ -17,9 +17,9 @@ resource "azurerm_linux_virtual_machine" "myvm" {
     storage_account_type = "Standard_LRS"
   }
   source_image_reference {
-    publisher = "RedHat"
-    offer     = "RHEL"
-    sku       = "83-gen2"
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
     version   = "latest"
   }
 }

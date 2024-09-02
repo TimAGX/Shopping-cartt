@@ -1,7 +1,7 @@
 #AKS Cluster
 
 resource "azurerm_kubernetes_cluster" "myaks" {
-  name                = var.aks_cluster_name
+  name                = "myAKSCluster-${random_string.myrandom.id}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = "aksdns"

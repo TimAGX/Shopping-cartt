@@ -1,6 +1,6 @@
 resource "azurerm_public_ip" "mypip" {
     count = var.vm_count
-  name                = "myPublicIP-${count.index + 1}"
+  name                = "myPublicIP-${count.index + 1}-${random_string.myrandom.id}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
