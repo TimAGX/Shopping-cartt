@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
-        DOCKER_IMAGE_NAME = 'timagx/nodeapp:v1'
+        DOCKER_IMAGE_NAME = 'timagx/nodeapp'
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.build("${DOCKER_IMAGE_NAME}:latest")
+                    docker.build("${DOCKER_IMAGE_NAME}:v1")
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
                 script {
                     // Push the Docker image to Docker Hub
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                        docker.image("${DOCKER_IMAGE_NAME}:latest").push('latest')
+                        docker.image("${DOCKER_IMAGE_NAME}:v1").push('v1')
                     }
                 }
             }
