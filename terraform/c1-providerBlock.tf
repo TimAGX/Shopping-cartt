@@ -12,6 +12,16 @@ terraform {
   }
 }
 
+#terraform state storage to azure stroage container
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "TFBackend-CS"
+    storage_account_name  = "capstone2580"
+    container_name        = "tfstatefiles"
+    key                   = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   features {}
   subscription_id = "7fd2d34f-fe5e-4cd6-81fb-d7ef5b32c079"

@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "mypip" {
-    count = 5
+    count = var.vm_count
   name                = "myPublicIP-${count.index + 1}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name

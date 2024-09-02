@@ -12,7 +12,7 @@ variable "resource_group_name" {
 
 variable "vm_count" {
   description = "number of virtual machine to create"
-  default = 3
+  default = 2
 }
 
 variable "aks_cluster_name" {
@@ -22,5 +22,5 @@ variable "aks_cluster_name" {
 
 variable "aks_node_count" {
     description = "Number of node in the AKS cluster"
-  default = 3
+  default = 2
 }
