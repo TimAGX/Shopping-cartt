@@ -6,6 +6,10 @@ pipeline {
         DOCKER_IMAGE_NAME = 'timagx/nodeapp'
     }
 
+    tools {
+        git 'Default' // Ensure this matches the name in Global Tool Configuration
+    }
+
     stages {
         stage('Checkout') {
             steps {
