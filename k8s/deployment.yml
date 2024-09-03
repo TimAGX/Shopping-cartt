@@ -18,5 +18,5 @@ spec:
         - name: shoppingcart
           image: timagx/nodeapp:v1
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
 
