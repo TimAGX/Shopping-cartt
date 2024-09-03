@@ -4,6 +4,12 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
         DOCKER_IMAGE_NAME = 'timagx/nodeapp'
+        AZURE_CLIENT_ID = credentials('azure-client-id')
+        AZURE_CLIENT_SECRET = credentials('azure-client-secret')
+        AZURE_TENANT_ID = credentials('azure-tenant-id')
+        AKS_CLUSTER_NAME = 'myAKSCluster-gboi'
+        AKS_RESOURCE_GROUP = 'rg-gboi'
+        KUBE_CONFIG_PATH = '/var/lib/jenkins/workspace/.kube/config'
     }
 
     tools {
@@ -36,6 +42,39 @@ pipeline {
                     }
                 }
             }
+        }
+        stage('Set up Kubernetes Context') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'azure-client-id', variable: 'AZURE_CLIENT_ID'),
+                                     string(credentialsId: 'azure-client-secret', variable: 'AZURE_CLIENT_SECRET'),
+                                     string(credentialsId: 'azure-tenant-id', variable: 'AZURE_TENANT_ID')]) {
+                        sh """
+                        az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+                        az aks get-credentials --name ${AKS_CLUSTER_NAME} --resource-group ${AKS_RESOURCE_GROUP} --file ${KUBE_CONFIG_PATH}
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to AKS') {
+            steps {
+                script {
+                    withEnv(["KUBECONFIG=${KUBE_CONFIG_PATH}"]) {
+                        sh """
+                        kubectl apply -f k8s/deployment.yaml
+                        kubectl apply -f k8s/service.yaml
+                        """
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
