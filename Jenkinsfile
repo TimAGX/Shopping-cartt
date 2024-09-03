@@ -17,7 +17,7 @@ pipeline {
     }
 
     stages {
-        stage('Install Kubectl') {
+ /*       stage('Install Kubectl') {
             steps {
                 sh '''
                 if ! command -v kubectl &> /dev/null
@@ -28,7 +28,7 @@ pipeline {
                 fi
                 '''
             }
-        }
+        }*/
         stage('Checkout') {
             steps {
                 // Checkout the code from Git repository
