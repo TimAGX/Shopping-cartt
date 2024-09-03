@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:14
+FROM node:14.5
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,10 +11,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 3000
+EXPOSE 3000
 
 # Command to run the app
-#CMD ["npm", "start"]
-#CMD ["npx", "nodemon", "src/index.js"]
-CMD ["node", "src/index.js"]
+CMD ["npm", "start"]
