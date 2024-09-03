@@ -16,4 +16,5 @@ EXPOSE 8080
 
 # Command to run the app
 #CMD ["npm", "start"]
-CMD ["npx", "nodemon", "src/index.js"]
+#CMD ["npx", "nodemon", "src/index.js"]
+CMD ["node", "src/index.js"]
