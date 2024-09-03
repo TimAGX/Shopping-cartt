@@ -17,7 +17,6 @@ pipeline {
     }
 
     stages {
-          stages {
         stage('Install Kubectl') {
             steps {
                 sh '''
@@ -30,7 +29,6 @@ pipeline {
                 '''
             }
         }
-    }
         stage('Checkout') {
             steps {
                 // Checkout the code from Git repository
