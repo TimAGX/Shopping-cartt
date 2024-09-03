@@ -75,8 +75,8 @@ pipeline {
                 script {
                     withEnv(["KUBECONFIG=${KUBE_CONFIG_PATH}"]) {
                         sh """
-                        kubectl apply -f k8s/deployment.yaml
-                        kubectl apply -f k8s/service.yaml
+                        kubectl apply -f k8s/deployment.yml
+                        kubectl apply -f k8s/service.yml
                         """
                     }
                 }
