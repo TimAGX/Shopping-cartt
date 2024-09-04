@@ -119,3 +119,8 @@ You need to ensure that your kubectl is configured to use your AKS cluster.
 az aks get-credentials --resource-group <your-resource-group> --name <your-cluster-name>
 ```
 
+Install Nginx Ingress Controller
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+```
