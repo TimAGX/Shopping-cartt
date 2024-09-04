@@ -15,3 +15,22 @@ CI/CD Pipeline: Implement a CI/CD pipeline in Jenkins that integrates with the G
 Monitoring Stack: Set up a monitoring stack using Prometheus and Grafana to monitor the health and performance of the Kubernetes cluster. This monitoring stack will provide valuable insights into the deployed services, enabling proactive issue detection and resolution.
 
 The project objective is to achieve infrastructure automation, efficient deployment, and continuous integration and delivery, resulting in a streamlined and scalable development process.
+
+SETUP STEPS
+
+Install Java
+
+sudo apt update
+sudo apt install openjdk-17-jre
+Verify Java is Installed
+
+java -version
+Now, you can proceed with installing Jenkins
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
