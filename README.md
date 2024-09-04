@@ -106,7 +106,6 @@ Go to Jenkins Dashboard > Manage Jenkins > Manage Credentials.
 Install kubectl on the Jenkins agent by running:
 
 ```bash
-Copy code
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
@@ -117,7 +116,6 @@ Ensure kubectl is Configured for AKS
 You need to ensure that your kubectl is configured to use your AKS cluster.
 
 ```sh
-Copy code
 az aks get-credentials --resource-group <your-resource-group> --name <your-cluster-name>
 ```
 
