@@ -18,6 +18,16 @@ The project objective is to achieve infrastructure automation, efficient deploym
 
 SETUP STEPS
 
+Provision the resources 
+
+```bash
+terraform init
+terraform validate
+terraform plan
+terraform apply
+```
+
+
 Install Java
 
 ```bash
@@ -40,3 +50,27 @@ sudo apt-get update
 sudo apt-get install jenkins
 ```
 
+Docker Slave Configuration
+Run the below command to Install Docker
+
+```bash
+sudo apt update
+sudo apt install docker.io
+```
+
+Grant Jenkins user and Ubuntu user permission to docker deamon.
+
+```bash
+sudo su - 
+usermod -aG docker jenkins
+usermod -aG docker ubuntu
+systemctl restart docker
+```
+
+Once you are done with the above steps, it is better to restart Jenkins.
+
+```bash
+http://<ec2-instance-public-ip>:8080/restart
+```
+
+The docker agent configuration is now successful.

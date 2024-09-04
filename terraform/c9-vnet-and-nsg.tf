@@ -17,9 +17,9 @@ resource "azurerm_network_security_group" "mynsg" {
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location  
 
-    security_rule {
-    name                       = "AllowSSH"
-    priority                   = 1001
+  security_rule {
+    name                       = "Allow-SSH"
+    priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -27,5 +27,22 @@ resource "azurerm_network_security_group" "mynsg" {
     destination_port_range     = "22"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
-    }
+  }
+
+  security_rule {
+    name                       = "Allow-HTTP"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8080"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_network_interface_security_group_association" "nic-association" {
+  network_interface_id      = azurerm_network_interface.mynic.id
+  network_security_group_id = azurerm_network_security_group.mynsg.id
 }
