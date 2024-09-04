@@ -23,6 +23,7 @@ Install Java
 ```bash
 sudo apt update
 sudo apt install openjdk-17-jre
+```
 
 Verify Java is Installed
 
@@ -37,3 +38,5 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins
+```
+
