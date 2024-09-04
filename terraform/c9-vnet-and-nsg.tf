@@ -43,6 +43,7 @@ resource "azurerm_network_security_group" "mynsg" {
 }
 
 resource "azurerm_network_interface_security_group_association" "nic-association" {
-  network_interface_id      = azurerm_network_interface.mynic.id
+    count = var.vm_count
+  network_interface_id      = azurerm_network_interface.mynic[count.index].id
   network_security_group_id = azurerm_network_security_group.mynsg.id
 }

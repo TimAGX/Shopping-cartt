@@ -83,8 +83,9 @@ Install Azure CLI on the Jenkins Server: Ensure that the Azure CLI is installed 
 
 ```bash
 az login
-Generate a Service Principal: Use the Azure CLI to generate a service principal, which Jenkins will use to interact with Azure.
 ```
+
+Generate a Service Principal: Use the Azure CLI to generate a service principal, which Jenkins will use to interact with Azure.
 
 ```bash
 az ad sp create-for-rbac --name "jenkins-sp" --role contributor \
@@ -97,7 +98,6 @@ This command will output a JSON object containing the credentials you'll need. S
 Add Azure Credentials in Jenkins:
 
 Go to Jenkins Dashboard > Manage Jenkins > Manage Credentials.
-
 
 Install kubectl on the Jenkins agent by running:
 
@@ -116,3 +116,4 @@ You need to ensure that your kubectl is configured to use your AKS cluster.
 Copy code
 az aks get-credentials --resource-group <your-resource-group> --name <your-cluster-name>
 ```
+
