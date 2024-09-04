@@ -74,20 +74,11 @@ pipeline {
             steps {
                 script {
                     withEnv(["KUBECONFIG=${KUBE_CONFIG_PATH}"]) {
-                                    withEnv(["KUBECONFIG=${KUBE_CONFIG_PATH}"]) {
-                sh """
-                # Apply the Nginx ingress controller first (ideally only once during initial setup)
-                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
-
-                # Check that the ingress controller is running before deploying app
-                kubectl wait --namespace ingress-nginx \
-                  --for=condition=ready pod \
-                  --selector=app.kubernetes.io/component=controller \
-                  --timeout=120s
-
+                        sh """
                         kubectl apply -f k8s/deployment.yml
                         kubectl apply -f k8s/service.yml
                         kubectl apply -f k8s/ingress.yml
+                        
                         """
                     }
                 }
