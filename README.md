@@ -79,7 +79,11 @@ The docker agent configuration is now successful.
 Add Azure and Docker Credentials to Jenkins
 To connect Jenkins with Azure, you need to add Azure credentials to Jenkins:
 
-Install Azure CLI on the Jenkins Server: Ensure that the Azure CLI is installed on your Jenkins server and that it's logged in with your Azure account.
+Install Azure CLI on the Jenkins Server:
+
+```bash
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
 
 ```bash
 az login
