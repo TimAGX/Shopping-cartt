@@ -65,6 +65,7 @@ sudo su -
 usermod -aG docker jenkins
 usermod -aG docker ubuntu
 systemctl restart docker
+sudo systemctl restart jenkins
 ```
 
 Once you are done with the above steps, it is better to restart Jenkins.
@@ -74,3 +75,44 @@ http://<ec2-instance-public-ip>:8080/restart
 ```
 
 The docker agent configuration is now successful.
+
+Add Azure and Docker Credentials to Jenkins
+To connect Jenkins with Azure, you need to add Azure credentials to Jenkins:
+
+Install Azure CLI on the Jenkins Server: Ensure that the Azure CLI is installed on your Jenkins server and that it's logged in with your Azure account.
+
+```bash
+az login
+Generate a Service Principal: Use the Azure CLI to generate a service principal, which Jenkins will use to interact with Azure.
+```
+
+```bash
+az ad sp create-for-rbac --name "jenkins-sp" --role contributor \
+--scopes /subscriptions/<subscription-id>/resourceGroups/<resource-group> \
+--sdk-auth
+```
+
+This command will output a JSON object containing the credentials you'll need. Save this output securely.
+
+Add Azure Credentials in Jenkins:
+
+Go to Jenkins Dashboard > Manage Jenkins > Manage Credentials.
+
+
+Install kubectl on the Jenkins agent by running:
+
+```bash
+Copy code
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
+Ensure kubectl is Configured for AKS
+
+You need to ensure that your kubectl is configured to use your AKS cluster.
+
+```sh
+Copy code
+az aks get-credentials --resource-group <your-resource-group> --name <your-cluster-name>
+```
