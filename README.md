@@ -29,7 +29,7 @@ Verify Java is Installed
 java -version
 Now, you can proceed with installing Jenkins
 
-
+```bash
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
