@@ -16,5 +16,5 @@ spec:
               service:
                 name: shoppingcart
                 port:
-                  number: 80
+                  number: 3000
 
